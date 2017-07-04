@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 #coding=utf-8
 
-import logging
-import logging.handlers
 
-class mylogger(object):
-    def __init__(self, logger):
+from logger import logging
 
-        self.logger = logging.getLogger()
-        self.logger.setLevel(logging.DEBUG)
 
-        handler = logging.handlers.TimedRotatingFileHandler("trans.log", 'D')
-        fmt = logging.Formatter(
-            "%(asctime)s - %(parameter)s - %(filename)s - %(function)s - %(lineno)s - %(levelname)s - %(message)s")
-        handler.setFormatter(fmt)
-        logger.addHandler(handler)
+def test():
+    if True:
+        logging.info("test")
+    else:
+        logging.error("wront")
 
-    def getlog(self):
-        return self.logger
+if __name__ == '__main__':
+    test()
+
 
 
