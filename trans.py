@@ -4,14 +4,15 @@
 import os,sys,ftplib,socket
 import datetime
 import logging
+from wechat import wechat
 
 FILENAME = "T"+datetime.datetime.now().strftime('%Y%m%d')+"gz"
 CONST_BUFFER_SIZE = 8192
 
-def connect(host,username,pwd):
+def connect(host, username, pwd):
     try:
         ftp = ftplib.FTP(host)
-        ftp.login(username,pwd)
+        ftp.login(username, pwd)
         return ftp
     except socket.error, socket.gaierror:
         logging.error("FTP is unavailable")
@@ -46,10 +47,12 @@ def checkfile(ftp,filename):
     else:
         logging.error("文件不存在，结束下载")
         return False
+
+
 def main():
 #先从kfc服务器下载交易到D盘。
     ftplocal = connect("182.108.0.1", "sodex", "sodex")
-    logging.info("begin to download file to localpath")
+    logging.info("begin to download file to local path")
     if checkfile(ftplocal, FILENAME):
         pass
     else:
@@ -59,17 +62,18 @@ def main():
     else:
         sys.exit(0)
     disconnect(ftplocal)
-    logging.info("Download localfile finishend")
+    logging.info("Download local file  finished")
 
 #开始上传到sodexo文件服务器
 
-    ftpremote = connect("58.247.98.30","ftpuser","MeiyouMima123")
-    logging.info("begin to upload file to remotepath")
-    if upload(ftpremote,FILENAME):
+    ftpremote = connect("58.247.98.30", "ftpuser", "MeiyouMima123")
+    logging.info("begin to upload file to remote path")
+    if upload(ftpremote, FILENAME):
         pass
     else:
         sys.exit(0)
     disconnect(ftpremote)
+    wechat.sendwechat("johnnyjh")
     sys.exit(0)
 
 
