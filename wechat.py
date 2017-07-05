@@ -13,7 +13,7 @@ class wechat:
     def __init__(self, corpid, secret ):
         url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s' %  (corpid ,secret)
         self.expire_time = sys.maxint
-        self.token = get_token()
+        self.access_token = get_token()
 
     def get_token(self):
         if self.expire_time > time.time():
