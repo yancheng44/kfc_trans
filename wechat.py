@@ -44,6 +44,7 @@ def SendMsg(user, title, content):
   }
   ret = requests.post(url, data=json.dumps(varload, ensure_ascii=False))
   print ret.json()
+
 if __name__ == '__main__':
 #SendMsg(sys.argv[1],sys.argv[2],sys.argv[3])
     SendMsg("yanchengjh", "TEST", "test")

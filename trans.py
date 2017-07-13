@@ -1,7 +1,7 @@
 import os,sys,ftplib,socket
 import datetime
 from logger import logging
-#from wechat import wechat
+from wechat import SendMsg
 
 FILENAME = "T"+datetime.datetime.now().strftime('%Y%m%d')+".gz"
 CONST_BUFFER_SIZE = 8192
